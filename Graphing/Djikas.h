@@ -21,13 +21,13 @@ class Path;
 class Djikas {
 private:
     vector<shared_ptr<Node>> graph;
-    map<shared_ptr<Node>, int> nodeMap;
-    const shared_ptr<Node> getNeighbor(const shared_ptr<Node> to, const Path* path);
-    const shared_ptr<Node> getLowest();
+    map<const Node*, int> nodeMap;
+    const Node* getNeighbor(const Node* to, const Path* path);
+    const Node* getLowest();
     int calculateNeighbors(Node& node);
 public:
     Djikas(vector<shared_ptr<Node>> graph);
-    int shortestPath(const shared_ptr<Node> from, const shared_ptr<Node> to);
+    int shortestPath(const Node* from, const Node* to);
 };
 
 #endif /* Djikas_hpp */

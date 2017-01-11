@@ -23,12 +23,12 @@ int Path::getWeight() {
     return weight;
 }
 
-const shared_ptr<Node> Path::getA() const {
-    return a;
+const Node* Path::getA() const {
+    return a.get();
 }
 
-const shared_ptr<Node> Path::getB() const {
-    return b;
+const Node* Path::getB() const {
+    return b.get();
 }
 
 Path Path::operator<(const Path &other) {

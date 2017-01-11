@@ -10,15 +10,15 @@
 #include "Path.h"
 #include "Node.h"
 
-const shared_ptr<Node> Djikas::getNeighbor(const shared_ptr<Node> node, const Path* path) {
+const Node* Djikas::getNeighbor(const Node* node, const Path* path) {
     if(path->getA() == node) {
         return path->getB();
     }
     return path->getA();
 }
 
-const shared_ptr<Node> Djikas::getLowest() {
-    typedef pair<shared_ptr<Node>, int> MapPair;
+const Node* Djikas::getLowest() {
+    typedef pair<const Node*, int> MapPair;
     struct Compare
     {
         bool operator()(const MapPair& left, const MapPair& right) const
@@ -30,13 +30,13 @@ const shared_ptr<Node> Djikas::getLowest() {
     return min.first;
 }
 
-Djikas::Djikas(vector<shared_ptr<Node>> graph) {
+Djikas::Djikas(vector<shared_ptr<Node>> graph) : graph(graph) {
     for(auto node : graph) {
-        nodeMap[node] = numeric_limits<int>::max();
+        nodeMap[node.get()] = numeric_limits<int>::max();
     }
 }
 
-int Djikas::shortestPath(const shared_ptr<Node> from, const shared_ptr<Node> to) {
+int Djikas::shortestPath(const Node* from, const Node* to) {
     if(from == to) {
         return nodeMap[from];
     }

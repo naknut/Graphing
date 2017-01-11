@@ -51,7 +51,7 @@ int main(int argc, const char * argv[]) {
     for (auto node : nodes) {
         for(auto path : node->getPaths()) {
             cout << node->getName() << " " << path->getWeight() << " ";
-            if(path->getA() == node) {
+            if(path->getA() == node.get()) {
                 cout << path->getB()->getName() << "\n";
             } else {
                 cout << path->getA()->getName() << "\n";
@@ -62,7 +62,7 @@ int main(int argc, const char * argv[]) {
     auto djikas = shared_ptr<Djikas>(new Djikas(nodes));
     auto front = nodes.front();
     auto back = nodes.back();
-    cout << front->getName() << djikas->shortestPath(front, back) << back->getName();
+    cout << front->getName() << djikas->shortestPath(front.get(), back.get()) << back->getName();
     
     return 0;
 }

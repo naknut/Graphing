@@ -22,8 +22,8 @@ public:
     Path(shared_ptr<Node> a, shared_ptr<Node> b, int weight);
     ~Path();
     int getWeight();
-    const shared_ptr<Node> getA() const;
-    const shared_ptr<Node> getB() const;
+    const Node* getA() const;
+    const Node* getB() const;
     Path operator<(const Path& other);
 };
 
